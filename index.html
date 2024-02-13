@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valentines Day</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .gradient-background {
+      background: rgb(255, 208, 229);
+      background: linear-gradient(180deg, rgba(255, 208, 229, 1) 0%, rgba(255, 232, 242, 1) 36%, rgba(255, 255, 255, 1) 100%);
+    }
+
+    .bounce2 {
+      animation: bounce2 2s ease infinite;
+    }
+
+    @keyframes bounce2 {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-20px);
+      }
+      60% {
+        transform: translateY(-10px);
+      }
+    }
+
+    /* Tablet styles */
+    @media (max-width: 768px) {
+      .container {
+        width: 90%;
+      }
+    }
+
+    /* Mobile styles */
+    @media (max-width: 576px) {
+      .container {
+        width: 100%;
+        padding: 10px;
+      }
+    }
+
+    /* Centered Message */
+    #messageDiv {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      max-width: 90%;
+      overflow-y: auto;
+      display: none;
+      margin: auto;
+      margin-top: 20px;
+      text-align: center;
+      font-family: "Arial", sans-serif; /* Use the desired font family */
+    }
+
+    /* Match font size and style of "Will you be my Valentine?" */
+    #messageText {
+      font-size: 1.2rem; /* Adjust font size as needed */
+      font-weight: bold;
+      font-style: italic;
+      color: #bd1e59; /* Match color */
+    }
+
+    /* Center images */
+    #messageDiv img {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body class="gradient-background">
+  <div class="flex items-center justify-center h-screen">
+    <div class="flex flex-col items-center p-4">
+      <img id="imageDisplay" src="./images/image1.gif" alt="Cute kitten with flowers" class="rounded-md h-[300px]" style="object-fit: cover;" />
+      <h2 id="valentineQuestion" class="text-4xl font-bold italic text-[#bd1e59] my-4">Will you be my Valentine?</h2>
+      <div class="flex gap-4 pt-[20px] items-center" id="responseButtons">
+        <button id="yesButton"
+          class="bounce2 inline-flex items-center justify-center whitespace-nowrap rounded-md text-[20px] font-medium disabled:pointer-events-none disabled:opacity-50 hover:bg-green-400 min-h-12 min-w-[75px] px-4 py-2 bg-green-500 text-white transition">
+          Yes
+        </button>
+        <button id="noButton"
+          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-[20px] font-medium transition disabled:pointer-events-none disabled:opacity-50 hover:bg-red-700 h-12 min-w-[75px] w-auto px-4 py-2 bg-red-500 text-white">
+          No
+        </button>
+      </div>
+      <div id="chickenEmoji" style="display: none; cursor: pointer; margin-top: 20px;">
+        <img src="./images/chicken.png" alt="Chicken Emoji" style="height: 150px; width: auto;">
+        <p>Click this Lucky Chicken</p>
+      </div>
+    </div>
+  </div>
+  
+  <div id="messageDiv" class="text-center">
+    <p id="messageText" class="text-lg">
+      Hi hello hindi ako magaling sa mga letter and shits kaya bare with me nalang if may mga typos and maling ewan isang pasado ko lang to ginawa and tinatype ko lang talaga pumasok sa isip ko. <br><br>
+      Hi Samantha Denise Halili Carambas Happy Valentine’s Day!!! I am really thankful sayo. I hope that we can continue to make more memories together. Thank you kahit napakarandom kong tao lalo na nung nag confess ako sayo ay tinanggap mo pa rin. I am really happy that I met you and ngayon nagkaron pa ko ng chance na mapalapit sayo. Ansaya talaga ng mga moments na nakakasama kita lalo na pag pinagtatawanan natin si martin. Pero seryoso masaya talaga ako and thankful din ako sa kanila for supporting us. Alam ko rin na malabo na magkasama tayo for valentine’s day so sobrang thankful and happy ako na nakapagdate tayo in advance and yan din yung dahilan why I made this. First time korin makaexperience ng date so medyo nahihiya pa talaga ako and hindi ko pa talaga alam masyado yun gagawin i knoe it’s not an excuse but I promise to do better and more next time. Sobrang saya talaga ng experience na yun. I hope na that date also made your day. I am really looking forward for more memories with you. Thank you so much talaga. Lagi mong tandaan na ang ganda mooooooooo at syempre I love you alwayssss. Miss na kitaaaa <br>
+    </p>
+    <!-- Transparent container for images -->
+    
+      <!-- Add the image "valentine" here -->
+      <img src="./images/valentine.jpg" alt="Valentine" style="height: 400px; width: auto;">
+    
+    <!-- Add the GIF named "mochi" here -->
+    <img src="./images/mochi.gif" alt="Mochi" style="height: 200px; width: auto;">
+    <p id="messageText" class="text-lg">Fav gif ko to sorey</p>
+  </div>
+  
+  <script type="module">
+    import confetti from 'https://cdn.skypack.dev/canvas-confetti';
+    const yesButton = document.getElementById('yesButton');
+    const noButton = document.getElementById('noButton');
+    const chickenEmoji = document.getElementById('chickenEmoji');
+    const imageDisplay = document.getElementById('imageDisplay');
+    const valentineQuestion = document.getElementById('valentineQuestion');
+    const responseButtons = document.getElementById('responseButtons');
+    const messageDiv = document.getElementById('messageDiv');
+  
+    let noClickCount = 0;
+    let buttonHeight = 48; // Starting height in pixels
+    let buttonWidth = 80;
+    let fontSize = 20; // Starting font size in pixels
+    const imagePaths = [
+      "./images/image1.gif",
+      "./images/image2.gif",
+      "./images/image3.gif",
+      "./images/image4.gif",
+      "./images/image5.gif",
+      "./images/image6.gif",
+      "./images/image7.gif",
+      "./images/image8.gif",
+      "./images/image9.gif",
+      "./images/image10.gif",
+      "./images/image11.gif",
+    ];
+  
+    noButton.addEventListener('click', function() {
+        noClickCount++;
+        if (noClickCount < 11  ) {
+        imageDisplay.src = imagePaths[noClickCount];
+        }else{
+          imageDisplay.src = imagePaths[10];
+        }
+        buttonHeight += 35; // Increase height by 5px on each click
+        buttonWidth += 35;
+        fontSize += 25; // Increase font size by 1px on each click
+        yesButton.style.height = `${buttonHeight}px`; // Update button height
+        yesButton.style.width = `${buttonWidth}px`;
+        yesButton.style.fontSize = `${fontSize}px`; // Update font size
+        if (noClickCount < 11  ) {
+          noButton.textContent = ["No", "Are you sure?", "Weh ayaw mo?", "Sure ka ba :(", "Wahahahah", "Omiyao :(","bat ayaw mo?","hi","hello","love","edi wag :("][noClickCount];
+        }
+  
+    });
+  
+    yesButton.addEventListener('click', () => {
+      imageDisplay.src = './images/image12.gif'; // Change to image7.gif
+      valentineQuestion.textContent = "Yeheyyyy!! :3"; // Change the question text
+      responseButtons.style.display = 'none'; // Hide both buttons
+      chickenEmoji.style.display = 'block'; // Show the chicken emoji
+      confetti(); // Trigger confetti animation
+    });
+
+    chickenEmoji.addEventListener('click', () => {
+      messageDiv.style.display = 'block'; // Show the message div
+      chickenEmoji.scrollIntoView({ behavior: 'smooth', block: 'start' }); // Scroll to the message div
+      imageDisplay.style.display = 'none'; // Hide the image
+      valentineQuestion.style.display = 'none'; // Hide the question
+      responseButtons.style.display = 'none'; // Hide the buttons
+      chickenEmoji.style.display = 'none'; // Hide the chicken emoji after clicking
+    });
+  </script>  
+</body>
+</html>
